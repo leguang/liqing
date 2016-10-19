@@ -37,6 +37,8 @@ dependencies {
     compile 'com.umeng.analytics:analytics:latest.integration'
     //扩展板的吐司
     compile 'com.sdsmdg.tastytoast:tastytoast:0.0.1'
+    //图片加载
+    compile 'com.github.bumptech.glide:glide:3.7.0'
     //下拉刷新
     compile 'in.srain.cube:ultra-ptr:1.0.11'
     //底部导航栏

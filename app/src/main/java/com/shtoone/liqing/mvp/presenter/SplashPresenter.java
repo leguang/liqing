@@ -52,8 +52,6 @@ public class SplashPresenter extends BasePresenter<SplashContract.View> implemen
 
         KLog.e("username解密:" + username);
         KLog.e("password解密:" + password);
-//        username = "shtoone";
-//        password = "shtoone888";
 
         if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
 
@@ -77,7 +75,6 @@ public class SplashPresenter extends BasePresenter<SplashContract.View> implemen
                                         break;
                                 }
                             }
-
                         } else {
                             getView().go2LoginOrGuide();
                         }

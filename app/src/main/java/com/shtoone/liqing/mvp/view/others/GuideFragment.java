@@ -34,7 +34,7 @@ public class GuideFragment extends BaseFragment {
     ViewPager vp;
     @BindView(R.id.bt_guide_fragment)
     Button bt;
-    @BindView(R.id.fl_container_guide_activity)
+    @BindView(R.id.fl_container_guide_fragment)
     FrameLayout fl;
     private int[] arrayResouces = {R.drawable.bg_welcome_0, R.drawable.bg_welcome_1, R.drawable.bg_welcome_2};
     private ArgbEvaluator mArgbEvaluator = new ArgbEvaluator();
@@ -46,6 +46,9 @@ public class GuideFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        getFragmentManager().beginTransaction()
+                .show(getPreFragment())
+                .commit();
         View view = inflater.inflate(R.layout.fragment_guide, container, false);
         ButterKnife.bind(this, view);
         return view;
@@ -54,6 +57,7 @@ public class GuideFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         fl.post(new Runnable() {
             @Override
             public void run() {

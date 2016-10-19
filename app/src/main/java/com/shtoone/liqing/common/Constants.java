@@ -1,5 +1,10 @@
 package com.shtoone.liqing.common;
 
+import com.shtoone.liqing.BaseApplication;
+import com.shtoone.liqing.utils.DirectoryUtils;
+
+import java.io.File;
+
 public class Constants {
 
     /**
@@ -8,6 +13,10 @@ public class Constants {
     private Constants() {
         throw new Error("Do not need instantiate!");
     }
+
+    //SD卡路径
+    public static final String PATH_DATA = DirectoryUtils.getDiskCacheDirectory(BaseApplication.mContext, "data").getAbsolutePath();
+    public static final String PATH_CACHE = PATH_DATA + File.separator + "NetCache";
 
     //基地址
     public static final String BASE_URL = "http://192.168.10.35:8080/lqqms/";

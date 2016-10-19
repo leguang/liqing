@@ -12,7 +12,7 @@ public interface LoginContract {
 
         void setErrorMessage(String message);
 
-        void setSuccessMessage(String message);
+        void setSuccessMessage();
 
         void go2Main();
 

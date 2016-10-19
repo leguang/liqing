@@ -91,7 +91,6 @@ public abstract class BaseActivity<P extends BaseContract.Presenter> extends Swi
         if (mPresenter != null) {
 
             mPresenter.detachView();
-            KLog.e("ActivitydetachView");
             mPresenter = null;
         }
         //把每一个Activity弹出栈
@@ -101,6 +100,7 @@ public abstract class BaseActivity<P extends BaseContract.Presenter> extends Swi
 
     @Override
     protected FragmentAnimator onCreateFragmentAnimator() {
+//        return new FragmentAnimator(0, 0, 0, 0);
         return new FragmentAnimator(android.R.anim.fade_in, android.R.anim.fade_out, 0, 0);
     }
 }

@@ -1,5 +1,6 @@
 package com.shtoone.liqing.mvp.view.others;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,14 +11,18 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.shtoone.liqing.R;
 import com.shtoone.liqing.common.Constants;
 import com.shtoone.liqing.mvp.contract.LoginContract;
 import com.shtoone.liqing.mvp.presenter.LoginPresenter;
+import com.shtoone.liqing.mvp.view.MainActivity;
 import com.shtoone.liqing.mvp.view.base.BaseFragment;
 import com.shtoone.liqing.utils.AESCryptUtils;
+import com.shtoone.liqing.utils.AnimationUtils;
 import com.shtoone.liqing.utils.KeyBoardUtils;
+import com.shtoone.liqing.utils.NetworkUtils;
 import com.shtoone.liqing.utils.SharedPreferencesUtils;
 import com.shtoone.liqing.widget.processbutton.iml.ActionProcessButton;
 
@@ -34,6 +39,8 @@ import butterknife.OnClick;
 public class LoginFragment extends BaseFragment<LoginContract.Presenter> implements LoginContract.View {
 
     private static final String TAG = LoginFragment.class.getSimpleName();
+    @BindView(R.id.ll_login_fragment)
+    LinearLayout ll;
     @BindView(R.id.et_username_login_fragment)
     TextInputLayout etUsername;
     @BindView(R.id.et_password_login_fragment)
@@ -63,6 +70,9 @@ public class LoginFragment extends BaseFragment<LoginContract.Presenter> impleme
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        getFragmentManager().beginTransaction()
+                .show(getPreFragment())
+                .commit();
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, view);
         return view;
@@ -71,6 +81,15 @@ public class LoginFragment extends BaseFragment<LoginContract.Presenter> impleme
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getFragmentManager().beginTransaction()
+                .show(getPreFragment())
+                .commit();
+        ll.post(new Runnable() {
+            @Override
+            public void run() {
+                AnimationUtils.show(ll);
+            }
+        });
         initData();
     }
 
@@ -159,21 +178,31 @@ public class LoginFragment extends BaseFragment<LoginContract.Presenter> impleme
 
     @Override
     public void setErrorMessage(String message) {
-        //按钮提示错误信息
-        btLogin.setErrorText(message);
+        //提示网络数据异常。1.可能是本机网络机场。2.可能是服务器异常。
+        if (!NetworkUtils.isConnected(_mActivity)) {
+            //提示网络异常
+            btLogin.setErrorText("网络异常");
+        } else {
+            //服务器异常
+            btLogin.setErrorText(message);
+        }
         btLogin.setProgress(-1);
     }
 
     @Override
-    public void setSuccessMessage(String message) {
+    public void setSuccessMessage() {
         //按钮提示成功信息
-        btLogin.setErrorText(message);
         btLogin.setProgress(100);
     }
 
     @Override
     public void go2Main() {
-        start(MainFragment.newInstance());
+        btLogin.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                _mActivity.startActivity(new Intent(_mActivity, MainActivity.class));
+            }
+        }, 300);
     }
 }
 

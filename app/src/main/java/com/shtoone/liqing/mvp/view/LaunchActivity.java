@@ -3,18 +3,18 @@ package com.shtoone.liqing.mvp.view;
 import android.os.Bundle;
 
 import com.shtoone.liqing.R;
-import com.shtoone.liqing.common.Constants;
 import com.shtoone.liqing.mvp.view.base.BaseActivity;
+import com.shtoone.liqing.mvp.view.others.SplashFragment;
+import com.shtoone.liqing.common.Constants;
 import com.shtoone.liqing.utils.ToastUtils;
-import com.socks.library.KLog;
 
 /**
  * Author：leguang on 2016/10/9 0009 15:49
  * Email：langmanleguang@qq.com
  */
-public class MainActivity extends BaseActivity {
+public class LaunchActivity extends BaseActivity {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = LaunchActivity.class.getSimpleName();
     // 再点一次退出程序时间设置
     private static final long WAIT_TIME = 2000L;
     private long TOUCH_TIME = 0;
@@ -22,10 +22,11 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_launch);
 
-        KLog.e(1/0);
-
+        if (savedInstanceState == null) {
+            loadRootFragment(R.id.fl_launch_activity, SplashFragment.newInstance());
+        }
     }
 
     @Override

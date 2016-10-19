@@ -6,7 +6,6 @@ import com.shtoone.liqing.mvp.contract.LoginContract;
 import com.shtoone.liqing.mvp.model.HttpHelper;
 import com.shtoone.liqing.mvp.model.bean.UserInfoBean;
 import com.shtoone.liqing.mvp.presenter.base.BasePresenter;
-import com.socks.library.KLog;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,7 +27,6 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
 
     @Override
     public void login(String username, String password) {
-        KLog.e("登录……………………");
         HttpHelper.getInstance().initService().login(username, password, Constants.OSTYPE).enqueue(new Callback<UserInfoBean>() {
             @Override
             public void onResponse(Call<UserInfoBean> call, Response<UserInfoBean> response) {
@@ -37,7 +35,8 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
                         BaseApplication.mUserInfoBean = mUserInfoBean = response.body();
                         getView().savaData();
                         initParameters();
-                        getView().setSuccessMessage("登录成功");
+                        getView().setSuccessMessage();
+
                         if ("GL".equals(mUserInfoBean.getType())) {
                             //进入管理层界面
                             getView().go2Main();
@@ -63,7 +62,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
             @Override
             public void onFailure(Call<UserInfoBean> call, Throwable t) {
                 //还是得把Context拿过来
-                getView().setErrorMessage("访问异常");
+                getView().setErrorMessage("服务器异常");
             }
         });
 

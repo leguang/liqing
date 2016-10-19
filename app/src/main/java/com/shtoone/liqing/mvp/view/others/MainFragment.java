@@ -44,5 +44,11 @@ public class MainFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+//        fl.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                AnimationUtils.show(fl);
+//            }
+//        });
     }
 }

@@ -361,7 +361,6 @@ public class HanziToPinyin {
                 }
             }
             if (DEBUG) {
-                Log.w(TAG, "There is no Chinese collator, HanziToPinyin is disabled");
             }
             sInstance = new HanziToPinyin(false);
             return sInstance;

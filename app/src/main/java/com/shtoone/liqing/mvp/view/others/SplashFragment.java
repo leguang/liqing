@@ -1,5 +1,6 @@
 package com.shtoone.liqing.mvp.view.others;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,10 +11,11 @@ import android.view.ViewGroup;
 
 import com.shtoone.liqing.BaseApplication;
 import com.shtoone.liqing.R;
+import com.shtoone.liqing.common.Constants;
 import com.shtoone.liqing.mvp.contract.SplashContract;
 import com.shtoone.liqing.mvp.presenter.SplashPresenter;
+import com.shtoone.liqing.mvp.view.MainActivity;
 import com.shtoone.liqing.mvp.view.base.BaseFragment;
-import com.shtoone.liqing.common.Constants;
 import com.shtoone.liqing.utils.SharedPreferencesUtils;
 import com.shtoone.liqing.widget.CircleTextProgressbar;
 
@@ -56,7 +58,6 @@ public class SplashFragment extends BaseFragment<SplashContract.Presenter> imple
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mPresenter.checkLogin();
 
         ctpSkip.setOutLineColor(Color.TRANSPARENT);
         ctpSkip.setInCircleColor(Color.parseColor("#99000000"));
@@ -76,7 +77,13 @@ public class SplashFragment extends BaseFragment<SplashContract.Presenter> imple
             }
         });
         ctpSkip.start();
+        initData();
+    }
+
+    private void initData() {
         isFirstentry = (boolean) SharedPreferencesUtils.get(BaseApplication.mContext, Constants.ISFIRSTENTRY, true);
+        //严格按照流程来，Presenter层的代码应该在View层代码的必要数据加载完成之后才调用
+        mPresenter.checkLogin();
     }
 
     @OnClick(R.id.ctp_skip)
@@ -91,9 +98,13 @@ public class SplashFragment extends BaseFragment<SplashContract.Presenter> imple
             return;
         }
         if (isFirstentry) {
-            start(GuideFragment.newInstance());
+//            start(GuideFragment.newInstance());
+            _mActivity.startActivity(new Intent(_mActivity, MainActivity.class));
+
         } else {
-            start(LoginFragment.newInstance());
+//            start(LoginFragment.newInstance());
+            _mActivity.startActivity(new Intent(_mActivity, MainActivity.class));
+
         }
     }
 

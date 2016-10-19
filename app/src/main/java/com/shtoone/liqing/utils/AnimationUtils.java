@@ -11,12 +11,10 @@ import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.socks.library.KLog;
-
 public class AnimationUtils {
 
     private static final String TAG = AnimationUtils.class.getSimpleName();
-    public static final long PERFECT_MILLS = 618;
+    public static final long PERFECT_MILLS = 3000;
     public static final int MINI_RADIUS = 0;
 
     /**
