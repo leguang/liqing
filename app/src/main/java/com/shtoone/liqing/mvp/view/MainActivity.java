@@ -6,7 +6,6 @@ import com.shtoone.liqing.R;
 import com.shtoone.liqing.common.Constants;
 import com.shtoone.liqing.mvp.view.base.BaseActivity;
 import com.shtoone.liqing.utils.ToastUtils;
-import com.socks.library.KLog;
 
 /**
  * Author：leguang on 2016/10/9 0009 15:49
@@ -23,8 +22,6 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        KLog.e(1/0);
 
     }
 

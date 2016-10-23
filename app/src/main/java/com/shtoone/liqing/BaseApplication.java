@@ -2,10 +2,7 @@ package com.shtoone.liqing;
 
 import android.app.Application;
 import android.content.Context;
-import android.os.Environment;
 
-import com.shtoone.liqing.common.Constants;
-import com.shtoone.liqing.exception.AppExceptionHandler;
 import com.shtoone.liqing.mvp.model.bean.DepartmentBean;
 import com.shtoone.liqing.mvp.model.bean.ParametersBean;
 import com.shtoone.liqing.mvp.model.bean.UserInfoBean;
@@ -32,10 +29,6 @@ public class BaseApplication extends Application {
         KLog.init(true, "SHTW沥青");
         mContext = this;
         // 程序异常交由AppExceptionHandler来处理
-        Thread.setDefaultUncaughtExceptionHandler(AppExceptionHandler.getInstance(this));
-        KLog.e(Constants.PATH_DATA);
-        KLog.e(Constants.PATH_CACHE);
-        String path = Environment.getExternalStorageDirectory().getPath() + "/crash/";
-        KLog.e(path);
+//        Thread.setDefaultUncaughtExceptionHandler(AppExceptionHandler.getInstance(this));
     }
 }

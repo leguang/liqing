@@ -22,18 +22,8 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * UncaughtException处理类,当程序发生Uncaught异常的时候,有该类来接管程序,并记录发送错误报告.
- * public class AndroidUtilsApplication extends Application {
- * public void onCreate() {
- * super.onCreate();
- * //崩溃处理
- * CrashHandlerUtil crashHandlerUtil = CrashHandlerUtil.getInstance();
- * crashHandlerUtil.init(this);
- * crashHandlerUtil.setCrashTip("很抱歉，程序出现异常，即将退出！");
- * }
- * }
- * Created by Administrator
- * on 2016/5/19.
+ * Author：leguang on 2016/10/9 0009 15:49
+ * Email：langmanleguang@qq.com
  */
 @SuppressWarnings("unused")
 public class AppExceptionHandler implements Thread.UncaughtExceptionHandler {

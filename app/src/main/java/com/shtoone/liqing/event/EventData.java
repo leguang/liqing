@@ -1,7 +1,8 @@
 package com.shtoone.liqing.event;
 
 /**
- * Created by leguang on 2016/7/18 0018.
+ * Author：leguang on 2016/10/9 0009 15:49
+ * Email：langmanleguang@qq.com
  */
 public class EventData {
     public int position;

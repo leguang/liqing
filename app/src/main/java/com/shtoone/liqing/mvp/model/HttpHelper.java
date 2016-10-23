@@ -72,12 +72,6 @@ public class HttpHelper {
                     //打印url信息
                     KLog.e(request.toString());
 
-                    Response mResponse = chain.proceed(request);
-                    //打印响应信息
-                    KLog.e(mResponse.toString());
-                    KLog.json(mResponse.body().string());
-
-
                     if (!NetworkUtils.isConnected(BaseApplication.mContext)) {
                         request = request.newBuilder()
                                 .cacheControl(CacheControl.FORCE_CACHE)
@@ -86,6 +80,9 @@ public class HttpHelper {
                     int tryCount = 0;
 
                     Response response = chain.proceed(request);
+
+                    KLog.e(response.toString());
+                    KLog.json(response.body().string());
 
                     while (!response.isSuccessful() && tryCount < 3) {
 
@@ -117,8 +114,8 @@ public class HttpHelper {
             };
 
             //设置缓存
-            builder.addNetworkInterceptor(cacheInterceptor);
-            builder.addInterceptor(cacheInterceptor);
+            //设置缓存后各种问题
+//            builder.addInterceptor(cacheInterceptor);
             builder.cache(cache);
             //设置超时
             builder.connectTimeout(Constants.DEFAULT_TIMEOUT, TimeUnit.SECONDS);

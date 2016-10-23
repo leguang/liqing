@@ -81,9 +81,7 @@ public class LoginFragment extends BaseFragment<LoginContract.Presenter> impleme
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getFragmentManager().beginTransaction()
-                .show(getPreFragment())
-                .commit();
+
         ll.post(new Runnable() {
             @Override
             public void run() {
